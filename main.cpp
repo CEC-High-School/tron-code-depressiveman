@@ -32,12 +32,21 @@ int main() {
 
 	//set up matrix
 	int grid[50][50];
+	int grid2[50][50];
 	for (int i = 0; i< 50; i++)
 		for (int j = 0; j < 50; j++) {
 			//set all to 0s except edges
 			grid[i][j] = 0;
 			if (i == 0 || i == 49 || j == 0 || j == 49)
 			grid[i][j] = 1;
+		}
+
+	for (int i = 0; i< 50; i++)
+		for (int j = 0; j < 50; j++) {
+			//set all to 0s except edges
+			grid2[i][j] = 0;
+			if (i == 0 || i == 49 || j == 0 || j == 49)
+				grid[i][j] = 1;
 		}
 
 	//print to console for testing
@@ -47,6 +56,11 @@ int main() {
 		cout << endl;
 	}
 
+	for (int i = 0; i < 50; i++) {
+		for (int j = 0; j < 50; j++)
+			cout << grid2[i][j];
+		cout << endl;
+	}
 	//set up variables
 	ALLEGRO_DISPLAY *display = NULL;
 	ALLEGRO_EVENT_QUEUE *event_queue = NULL;
@@ -205,7 +219,7 @@ ALLEGRO_FONT *font = al_load_ttf_font("28DaysLater.ttf", 72, 0);
 
 				//draw a line behind the bike
 				grid[(player1_x) / 10][(player1_y) / 10] = 2;
-				grid[(player2_x) / 10][(player2_y) / 10] = 2;
+				grid2[(player2_x) / 10][(player2_y) / 10] = 2;
 
 				//check right collision for p1
 				if (dir == RIGHT && grid[(player1_x + 10) / 10][player1_y / 10] != 0) {
@@ -292,14 +306,14 @@ ALLEGRO_FONT *font = al_load_ttf_font("28DaysLater.ttf", 72, 0);
 				cout << "flag5" << endl;
 
 				/////////////////
-				if (dir2 == RIGHT2 && grid[(player2_x + 10) / 10][player2_y / 10] != 0) {
+				if (dir2 == RIGHT2 && grid2[(player2_x + 10) / 10][player2_y / 10] != 0) {
 					cout << "RIGHT CRASH" << endl; //you need to do something more here :/
 
-					grid[(player2_x) / 10][(player2_y) / 10] = 0;
-					if (grid[(player2_x) / 10][(player2_y) / 10] == 0) {
+					grid2[(player2_x) / 10][(player2_y) / 10] = 0;
+					if (grid2[(player2_x) / 10][(player2_y) / 10] == 0) {
 						for (int i = 0; i < 50; i++) {
 							for (int j = 0; j < 50; j++) {
-								grid[i][j] = 0;
+								grid2[i][j] = 0;
 
 							}
 						}
@@ -313,13 +327,13 @@ ALLEGRO_FONT *font = al_load_ttf_font("28DaysLater.ttf", 72, 0);
 				}
 
 				//check left collision for p1
-				if (dir2 == LEFT2 && grid[(player2_x - 10) / 10][player2_y / 10] != 0) {
+				if (dir2 == LEFT2 && grid2[(player2_x - 10) / 10][player2_y / 10] != 0) {
 					cout << "LEFT CRASH" << endl;
-					grid[(player2_x) / 10][(player2_y) / 10] = 0;
-					if (grid[(player2_x) / 10][(player2_y) / 10] == 0) {
+					grid2[(player2_x) / 10][(player2_y) / 10] = 0;
+					if (grid2[(player2_x) / 10][(player2_y) / 10] == 0) {
 						for (int i = 0; i < 50; i++) {
 							for (int j = 0; j < 50; j++) {
-								grid[i][j] = 0;
+								grid2[i][j] = 0;
 
 							}
 						}
@@ -334,13 +348,13 @@ ALLEGRO_FONT *font = al_load_ttf_font("28DaysLater.ttf", 72, 0);
 
 				cout << "flag4" << endl;
 				//check down collision for p1
-				if (dir2 == DOWN2 && grid[player2_x / 10][(player2_y + 10) / 10] != 0) {
+				if (dir2 == DOWN2 && grid2[player2_x / 10][(player2_y + 10) / 10] != 0) {
 					cout << "DOWN CRASH" << endl;
-					grid[(player2_x) / 10][(player2_y) / 10] = 0;
-					if (grid[(player2_x) / 10][(player2_y) / 10] == 0) {
+					grid2[(player2_x) / 10][(player2_y) / 10] = 0;
+					if (grid2[(player2_x) / 10][(player2_y) / 10] == 0) {
 						for (int i = 0; i < 50; i++) {
 							for (int j = 0; j < 50; j++) {
-								grid[i][j] = 0;
+								grid2[i][j] = 0;
 
 							}
 						}
@@ -354,13 +368,13 @@ ALLEGRO_FONT *font = al_load_ttf_font("28DaysLater.ttf", 72, 0);
 				}
 
 				//check up collision for p1
-				if (dir2 == UP2 && grid[player2_x / 10][(player2_y - 10) / 10] != 0) {
+				if (dir2 == UP2 && grid2[player2_x / 10][(player2_y - 10) / 10] != 0) {
 					cout << "UP CRASH" << endl;
-					grid[(player2_x) / 10][(player2_y) / 10] = 0;
-					if (grid[(player2_x) / 10][(player2_y) / 10] == 0) {
+					grid2[(player2_x) / 10][(player2_y) / 10] = 0;
+					if (grid2[(player2_x) / 10][(player2_y) / 10] == 0) {
 						for (int i = 0; i < 50; i++) {
 							for (int j = 0; j < 50; j++) {
-								grid[i][j] = 0;
+								grid2[i][j] = 0;
 
 							}
 						}
@@ -488,6 +502,15 @@ ALLEGRO_FONT *font = al_load_ttf_font("28DaysLater.ttf", 72, 0);
 						if (grid[i][j] == 1)
 							al_draw_filled_rectangle(i * 10, j * 10, i * 10 + 10, j * 10 + 10, al_map_rgb(255, 255, 255));
 						if (grid[i][j] == 2)
+							al_draw_filled_rectangle(i * 10, j * 10, i * 10 + 10, j * 10 + 10, al_map_rgb(0, 255, 255));
+					}
+				}
+
+				for (int i = 0; i < 50; i++) {
+					for (int j = 0; j < 50; j++) {
+						if (grid2[i][j] == 1)
+							al_draw_filled_rectangle(i * 10, j * 10, i * 10 + 10, j * 10 + 10, al_map_rgb(255, 5, 255));
+						if (grid2[i][j] == 2)
 							al_draw_filled_rectangle(i * 10, j * 10, i * 10 + 10, j * 10 + 10, al_map_rgb(0, 255, 255));
 					}
 				}
